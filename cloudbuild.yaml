@@ -1,11 +1,11 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/ai-labs-testing/temple-run', '.']
+    args: ['build', '-t', 'gcr.io/prompt-wars-487605/temple-run', '.']
   
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/ai-labs-testing/temple-run']
+    args: ['push', 'gcr.io/prompt-wars-487605/temple-run']
   
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -15,7 +15,7 @@ steps:
       - 'deploy'
       - 'temple-run-service'
       - '--image'
-      - 'gcr.io/ai-labs-testing/temple-run'
+      - 'gcr.io/prompt-wars-487605/temple-run'
       - '--region'
       - 'us-central1'
       - '--platform'
@@ -23,4 +23,4 @@ steps:
       - '--allow-unauthenticated'
 
 images:
-  - 'gcr.io/ai-labs-testing/temple-run'
+  - 'gcr.io/prompt-wars-487605/temple-run'
