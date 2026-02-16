@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import Player from './Player';
 import World from './World';
 
+
 export default function Scene() {
     return (
         <div className="h-screen w-full bg-[#1e1e2e]">
