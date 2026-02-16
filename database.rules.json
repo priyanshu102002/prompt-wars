@@ -1,0 +1,23 @@
+{
+    "rules": {
+        "contest": {
+            "global": {
+                "players": {
+                    "$uid": {
+                        ".read": true,
+                        ".write": "auth != null && auth.uid === $uid",
+                        "currentScore": {
+                            ".validate": "newData.isNumber()"
+                        },
+                        "name": {
+                            ".validate": "newData.isString()"
+                        },
+                        "photo": {
+                            ".validate": "newData.isString()"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
