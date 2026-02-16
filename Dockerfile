@@ -1,27 +1,15 @@
-# Stage 1: Builder
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Install dependencies
-COPY package*.json ./
-RUN npm ci
+COPY package.json package-lock.json ./
 
-# Copy source
+RUN npm install
+
 COPY . .
 
-# Build for static export (relies on next.config.ts having output: 'export')
 RUN npm run build
 
-# Stage 2: Runner
-FROM nginx:alpine AS runner
+EXPOSE 3000
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy static assets from builder
-COPY --from=builder /app/out /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
